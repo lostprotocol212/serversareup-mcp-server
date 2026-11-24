@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.serversareup/mcp",
+  "title": "Servers Are Up Cloud & Hybrid Infrastructure MCP",
+  "description": "US Linux & Windows VPS, Docker, Virtual Datacenters, Game Servers & Cloud APIs via MCP.",
+  "version": "0.3.0",
+  "websiteUrl": "https://serversareup.com/mcp",
+  "repository": {
+    "url": "https://github.com/lostprotocol212/serversareup-mcp-server",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://serversareup.com/api/mcp/v1"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.serversareup.com"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@serversareup/mcp-server",
+      "version": "0.3.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SAU_API_TOKEN",
+          "description": "Scoped Personal or Organization Access Token (sau_...) generated at https://serversareup.com/account/api-keys",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "SAU_API_BASE",
+          "description": "Base URL for the Servers Are Up API (defaults to https://serversareup.com)",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "https://serversareup.com",
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

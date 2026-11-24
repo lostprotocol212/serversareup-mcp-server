@@ -1,0 +1,69 @@
+{
+  "name": "@serversareup/mcp-server",
+  "mcpName": "com.serversareup/mcp",
+  "version": "0.3.0",
+  "description": "Model Context Protocol (MCP) server for managing Servers Are Up Linux VPS, Windows VMs, Docker containers, Virtual Datacenters, Resource Manager, Managed Cloud Storage, Security, and Cloud SaaS from AI assistants (Claude Code, Cursor, Copilot, Codex).",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "serversareup-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "server.json",
+    "smithery.yaml",
+    "glama.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lostprotocol212/serversareup-mcp-server.git"
+  },
+  "homepage": "https://serversareup.com/docs/mcp",
+  "bugs": {
+    "url": "https://github.com/lostprotocol212/serversareup-mcp-server/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepublishOnly": "npm run build",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "serversareup",
+    "vps",
+    "vm",
+    "cloud",
+    "ai",
+    "claude-code",
+    "claude-desktop",
+    "cursor",
+    "copilot",
+    "codex",
+    "docker",
+    "game-server",
+    "linux",
+    "windows-server"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
