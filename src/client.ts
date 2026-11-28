@@ -374,7 +374,7 @@ export class SAUClient {
   }
 
   async setKeyVaultSecret(body: { vaultName?: string; name: string; value: string; contentType?: string }): Promise<unknown> {
-    return this.request('/vault/secrets', {
+    return this.request('/secrets', {
       method: 'POST',
       body: JSON.stringify(body),
     });
@@ -386,7 +386,7 @@ export class SAUClient {
   }
 
   async manageSentinelWorkspace(action: string, payload: Record<string, unknown> = {}): Promise<unknown> {
-    return this.request('/sentinel', {
+    return this.request('/cloud-siem', {
       method: 'POST',
       body: JSON.stringify({ ...payload, action }),
     });
@@ -399,6 +399,14 @@ export class SAUClient {
       'cloud-dns',
       'recovery-vault',
       'bastion',
+      'access-gateway',
+      'queues',
+      'feature-flags',
+      'backup-recovery',
+      'secrets-kms',
+      'security-posture',
+      'cloud-siem',
+      'identity-governance',
       'defender-purview',
       'entra-suite',
       'serverless-compute',
@@ -425,6 +433,14 @@ export class SAUClient {
       'cloud-dns',
       'recovery-vault',
       'bastion',
+      'access-gateway',
+      'queues',
+      'feature-flags',
+      'backup-recovery',
+      'secrets-kms',
+      'security-posture',
+      'cloud-siem',
+      'identity-governance',
       'defender-purview',
       'entra-suite',
       'serverless-compute',

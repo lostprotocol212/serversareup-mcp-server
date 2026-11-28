@@ -386,7 +386,7 @@ export const TOOLS: Tool[] = [
   },
   {
     name: 'get_key_vault_secrets',
-    description: 'List Key Vault secret metadata or retrieve a specific secret value.',
+    description: 'List Secrets & KMS secret metadata or retrieve a specific secret value.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -398,7 +398,7 @@ export const TOOLS: Tool[] = [
   },
   {
     name: 'set_key_vault_secret',
-    description: 'Create or version-update an encrypted secret in SAU Key Vault.',
+    description: 'Create or version-update an encrypted secret in SAU Secrets & KMS.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -435,7 +435,7 @@ export const TOOLS: Tool[] = [
   },
   {
     name: 'inspect_cloud_service_plane',
-    description: 'Read state across any SAU Cloud Service plane: blob-storage, container-registry, cloud-dns, recovery-vault, bastion, defender-purview, entra-suite, serverless-compute, iot-chaos, app-config, service-bus, workflows, governance, or apim.',
+    description: 'Read state across any SAU Cloud Service plane: blob-storage, container-registry, cloud-dns, backup-recovery, access-gateway, security-posture, identity-governance, serverless-compute, iot-chaos, feature-flags, queues, workflows, governance, or apim.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -447,7 +447,7 @@ export const TOOLS: Tool[] = [
   },
   {
     name: 'operate_cloud_service_plane',
-    description: 'Execute a control-plane action on any SAU Cloud Service plane: blob-storage, container-registry, cloud-dns, recovery-vault, bastion, defender-purview, entra-suite, serverless-compute, iot-chaos, app-config, service-bus, workflows, governance, or apim.',
+    description: 'Execute a control-plane action on any SAU Cloud Service plane: blob-storage, container-registry, cloud-dns, backup-recovery, access-gateway, security-posture, identity-governance, serverless-compute, iot-chaos, feature-flags, queues, workflows, governance, or apim.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -525,7 +525,7 @@ export const TOOLS: Tool[] = [
   },
   {
     name: 'list_tenant_environments',
-    description: 'List customer environments with isolated Entra Tenant GUIDs, compliance %, Sentinel SIEM, Edge Gateways, Alerting, Plugins, and dedicated MCP endpoints.',
+    description: 'List customer environments with isolated Directory Tenant GUIDs, compliance %, Cloud SIEM, Edge Gateways, Alerting, Plugins, and dedicated MCP endpoints.',
     annotations: { readOnlyHint: true },
     inputSchema: {
       type: 'object',

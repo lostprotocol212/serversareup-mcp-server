@@ -6,7 +6,7 @@
 
 Discoverable on [Glama MCP Servers](https://glama.ai/mcp/servers) · Source mirror at [lostprotocol212/serversareup-mcp-server](https://github.com/lostprotocol212/serversareup-mcp-server).
 
-Model Context Protocol (MCP) server for managing [Servers Are Up](https://serversareup.com) virtual machines, Docker containers, Virtual Datacenters, multiplayer game servers, connected hybrid machines, **SAU Resource Manager**, **Managed Cloud Storage Hosted via Microsoft Azure**, Multi-Model Cloud Databases, Key Vault, Cloud SIEM, and `112` Cloud & Managed SaaS services from AI assistants.
+Model Context Protocol (MCP) server for managing [Servers Are Up](https://serversareup.com) virtual machines, Docker containers, Virtual Datacenters, multiplayer game servers, connected hybrid machines, **SAU Resource Manager**, **Managed Cloud Storage Hosted via Microsoft Azure**, Multi-Model Cloud Databases, Secrets Vault, Cloud SIEM, and `112` Cloud & Managed SaaS services from AI assistants.
 
 Requires **Node.js 20 or later**. Install the standalone stdio server from npm or directly from the verified tarball, or connect directly to the hosted HTTP endpoint with zero local installation:
 
@@ -18,7 +18,7 @@ npm install -g https://serversareup.com/downloads/serversareup-mcp-server.tgz
 
 ## Hosted Streamable HTTP Connection (`141` Tools + Per-Environment Tenant MCP)
 
-Claude Code, Codex CLI, Cursor, and other clients that support Streamable HTTP bearer headers can connect to `https://serversareup.com/api/mcp/v1` (account-wide) or to an isolated **Customer Environment Tenant MCP Server** at `https://serversareup.com/api/mcp/v1/environments/{envId}` using a scoped `sau_tmcp_...` token with per-environment write guardrails (`READ_ONLY`, `SCOPED_WRITE`, `PIM_GATED_WRITE`), tool-group scoping, Entra ID/PIM/B2B, Sentinel SIEM, Edge Gateways, Compliance, Monitoring, and Plugins:
+Claude Code, Codex CLI, Cursor, and other clients that support Streamable HTTP bearer headers can connect to `https://serversareup.com/api/mcp/v1` (account-wide) or to an isolated **Customer Environment Tenant MCP Server** at `https://serversareup.com/api/mcp/v1/environments/{envId}` using a scoped `sau_tmcp_...` token with per-environment write guardrails (`READ_ONLY`, `SCOPED_WRITE`, `PIM_GATED_WRITE`), tool-group scoping, Cloud Identity/PIM/B2B, Cloud SIEM, Edge Gateways, Compliance, Monitoring, and Plugins:
 
 ```json
 {
@@ -32,10 +32,17 @@ Claude Code, Codex CLI, Cursor, and other clients that support Streamable HTTP b
 }
 ```
 
-With Codex CLI:
+With Codex CLI or Claude Code:
 
 ```bash
 codex mcp add serversareup --url https://serversareup.com/api/mcp/v1 --bearer-token-env-var SAU_API_TOKEN
+claude mcp add --transport http serversareup https://serversareup.com/api/mcp/v1
+```
+
+Or run the containerized stdio bridge from GitHub Container Registry (`GHCR`):
+
+```bash
+docker run -i --rm -e SAU_API_TOKEN="sau_your_token" ghcr.io/lostprotocol212/serversareup-mcp-server:latest
 ```
 
 Keep the actual token out of source files and shell history. Connections on tokens requiring approval must be approved by the account owner in the dashboard before tool calls work, and Cloud Platform mutations respect active `CanNotDelete` / `ReadOnly` Management Locks plus the environment's **AI Agent Write Guardrail** (`READ_ONLY`, `SAFE_MUTATIONS`, `FULL_AUTONOMOUS`). See the [complete hosted MCP reference](https://serversareup.com/docs/mcp).
@@ -102,9 +109,9 @@ Common scopes: `instances:read`, `instances:write`, `instances:power`, `instance
 | `get_resource_manager` / `manage_resource_manager` | Inspect or manage Resource Groups, Tags, Locks, RBAC, Diagnostics, Quotas, Portal/CLI settings, AI Write Guardrails, and `ARM_JSON` / `TERRAFORM_HCL` exports (`cloud:read` / `cloud:write`) |
 | `list_cloud_saas_services` / `manage_cloud_saas_subscription` | Browse or subscribe/cancel across `112` Cloud & Managed SaaS offerings |
 | `get_cosmos_databases` / `manage_cosmos_database` | Inspect and operate SAU Multi-Model Cloud Databases (Document JSONB, Vector AI, Key-Value) |
-| `get_key_vault_secrets` / `set_key_vault_secret` | List, read, or write versioned encrypted secrets in SAU Key Vault |
+| `get_key_vault_secrets` / `set_key_vault_secret` | List, read, or write versioned encrypted secrets in SAU Secrets Vault |
 | `get_sentinel_workspace` / `manage_sentinel_workspace` | Run Cloud SIEM KQL threat-hunting queries, triage incidents, and manage SOAR playbooks |
-| `inspect_cloud_service_plane` / `operate_cloud_service_plane` | Unified read/write across `blob-storage` (Managed Cloud Storage via Microsoft Azure), `container-registry`, `cloud-dns`, `recovery-vault`, `bastion`, `defender-purview`, `entra-suite`, `serverless-compute`, `iot-chaos`, `app-config`, `service-bus`, `workflows`, `governance`, and `apim` |
+| `inspect_cloud_service_plane` / `operate_cloud_service_plane` | Unified read/write across `blob-storage` (Managed Cloud Storage via Microsoft Azure), `container-registry`, `cloud-dns`, `recovery-vault`, `access gateway`, `defender-purview`, `entra-suite`, `serverless-compute`, `iot-chaos`, `app-config`, `service-bus`, `workflows`, `governance`, and `apim` |
 | `list_updates` / `get_update_policy` / `set_update_policy` / `apply_update` / `rollback_update` | Inspect software/OS/product/service versions, configure auto-update policies (platform ON, apps OFF by default), apply updates, and roll back via checkpoints (`/api/v1/updates`) |
 
 Instances are also exposed as MCP resources at `sau://instances/{id}`.

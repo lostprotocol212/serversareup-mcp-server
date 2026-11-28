@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "serversareup": {
+      "url": "https://serversareup.com/api/mcp/v1",
+      "headers": {
+        "Authorization": "Bearer ${env:SAU_API_TOKEN}"
+      }
+    }
+  }
+}
